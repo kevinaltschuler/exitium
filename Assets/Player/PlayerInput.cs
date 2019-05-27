@@ -19,23 +19,18 @@ public class PlayerInput : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         InputDict inputDict = new InputDict();
-        if(Input.GetKey("w"))
-        {
+        if(Input.GetKey("w")) {
             inputDict.up = true;
         }
-        if(Input.GetKey("a"))
-        {
+        if(Input.GetKey("a")) {
             inputDict.left = true;
         }
-        if(Input.GetKey("s"))
-        {
+        if(Input.GetKey("s")) {
             inputDict.down = true;
         }
-        if(Input.GetKey("d"))
-        {
+        if(Input.GetKey("d")) {
             inputDict.right = true;
         }
 
