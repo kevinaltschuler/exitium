@@ -5,7 +5,7 @@ public class CreateWalls : MonoBehaviour
     public GameObject wallPrefab;
 
     // This script will simply instantiate the Prefab when the game starts.
-    public void Create(int x, int y, int z)
+    public void Create(float x, float y, float z)
     {
         // Instantiate at position (0, 0, 0) and zero rotation.
         Instantiate(wallPrefab, new Vector3(x, y, z), Quaternion.identity);

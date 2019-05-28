@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     CreateWalls createWalls;
+    Vector3 position;
+    
 
      void Start()
      {
@@ -17,8 +19,10 @@ public class PlayerAction : MonoBehaviour
     }
 
     public void createWall(InputDict dict) {
+        position = GetComponent<Transform>().position;
+
         if(dict.createWall){
-            createWalls.Create(0,0,0);
+            createWalls.Create(position.x,position.y,position.z+1);
         }
     }
 }
