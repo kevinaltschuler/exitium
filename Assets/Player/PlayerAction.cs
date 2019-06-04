@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerAction : MonoBehaviour
 {
-    CreateWalls createWalls;
     Vector3 position;
+
+    public GameObject wallPrefab;
+    public GameObject minePrefab;
+    public GameObject rocketPrefab;
     
 
      void Start()
      {
-        createWalls = GetComponent<CreateWalls>();
      }
  
     void FixedUpdate()
@@ -18,11 +20,42 @@ public class PlayerAction : MonoBehaviour
 
     }
 
-    public void createWall(InputDict dict) {
+    public void onInput(InputDict dict) {
+        if (dict.createMine) {
+            createMine();
+        }
+        if (dict.createWall) {
+            createWall();
+        }
+        if (dict.shootRocket) {
+            shootRocket();
+        }
+    }
+
+    void createWall() {
         position = GetComponent<Transform>().position;
 
-        if(dict.createWall){
-            createWalls.Create(position.x,position.y,position.z+1);
-        }
+        position = position - GetComponent<Transform>().forward;
+
+        Instantiate(wallPrefab, position, GetComponent<Transform>().rotation);
+    }
+
+    void createMine() {
+        position = GetComponent<Transform>().position;
+
+        position = position - GetComponent<Transform>().forward;
+
+        Instantiate(minePrefab, new Vector3(position.x, 0, position.z), GetComponent<Transform>().rotation);
+    }
+
+    void shootRocket() {
+        position = GetComponent<Transform>().position;
+
+        position = position + GetComponent<Transform>().forward;
+
+        Vector3 rot = GetComponent<Transform>().rotation.eulerAngles;
+        rot = new Vector3(rot.x,rot.y+90,rot.z+90);
+
+        Instantiate(rocketPrefab, new Vector3(position.x, 0.6f, position.z), Quaternion.Euler(rot));
     }
 }

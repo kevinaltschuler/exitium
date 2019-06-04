@@ -8,6 +8,8 @@ public class InputDict {
     public bool left = false;
     public bool right = false;
     public bool createWall = false;
+    public bool createMine = false;
+    public bool shootRocket = false;
 }
 
 public class PlayerInput : MonoBehaviour
@@ -38,11 +40,17 @@ public class PlayerInput : MonoBehaviour
         if(Input.GetKey("d")) {
             inputDict.right = true;
         }
-        if(Input.GetKey("q")) {
+        if(Input.GetKey("j")) {
             inputDict.createWall = true;
+        }
+        if(Input.GetKey("k")) {
+            inputDict.createMine = true;
+        }
+        if(Input.GetKey("l")) {
+            inputDict.shootRocket = true;
         }
 
         playerMovement.move(inputDict);
-        playerAction.createWall(inputDict);
+        playerAction.onInput(inputDict);
     }
 }

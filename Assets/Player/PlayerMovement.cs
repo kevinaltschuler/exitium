@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
      private float walkSpeed;
      private float curSpeed;
      private float maxSpeed;
+     public float rotateSpeed = 100.0f;
  
      //private CharacterStat plStat;
  
@@ -24,7 +25,11 @@ public class PlayerMovement : MonoBehaviour
  
     void FixedUpdate()
     {
+        
+        if (GetComponent<Rigidbody>().velocity != Vector3.zero) {
+        
 
+        }
     }
 
     public void move(InputDict dict) {
@@ -46,5 +51,20 @@ public class PlayerMovement : MonoBehaviour
         // Move senteces
         GetComponent<Rigidbody>().velocity = new Vector3(Mathf.Lerp(0, Input.GetAxis("Horizontal")* curSpeed, 0.8f), GetComponent<Rigidbody>().velocity.y,
                                             Mathf.Lerp(0, Input.GetAxis("Vertical")* curSpeed, 0.8f));
+
+        if (h != 0 || v != 0) {
+            GetComponent<Transform>().rotation = 
+                Quaternion.RotateTowards(
+                    GetComponent<Transform>().rotation, 
+                    Quaternion.LookRotation(
+                        new Vector3(
+                            GetComponent<Rigidbody>().velocity.x,
+                            0,
+                            GetComponent<Rigidbody>().velocity.z
+                        )
+                    ),
+                    Time.deltaTime * rotateSpeed
+                );
+        }
     }
 }
