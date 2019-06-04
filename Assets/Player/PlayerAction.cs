@@ -56,6 +56,7 @@ public class PlayerAction : MonoBehaviour
         Vector3 rot = GetComponent<Transform>().rotation.eulerAngles;
         rot = new Vector3(rot.x,rot.y+90,rot.z+90);
 
-        Instantiate(rocketPrefab, new Vector3(position.x, 0.6f, position.z), Quaternion.Euler(rot));
+        GameObject rocket = Instantiate(rocketPrefab, new Vector3(position.x, 0.6f, position.z), Quaternion.Euler(rot));
+        rocket.GetComponent<RocketController>().forwardDir = GetComponent<Transform>().forward;
     }
 }

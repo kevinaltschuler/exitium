@@ -26,10 +26,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         
-        if (GetComponent<Rigidbody>().velocity != Vector3.zero) {
-        
-
-        }
     }
 
     public void move(InputDict dict) {
