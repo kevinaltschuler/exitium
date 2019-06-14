@@ -10,16 +10,17 @@ public class InputDict {
     public bool createWall = false;
     public bool createMine = false;
     public bool shootRocket = false;
+    public bool jump = false;
+    public bool grapplingHook = false;
+    public bool dash = false;
 }
 
-public class PlayerInput : MonoBehaviour
-{
+public class PlayerInput : MonoBehaviour {
     private PlayerMovement playerMovement;
     private PlayerAction playerAction;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         playerMovement = GetComponent<PlayerMovement>();
         playerAction = GetComponent<PlayerAction>();
     }
@@ -28,29 +29,31 @@ public class PlayerInput : MonoBehaviour
     void FixedUpdate() {
         InputDict inputDict = new InputDict();
 
-        if(Input.GetKey("w")) {
+        if (Input.GetKey("w")) {
             inputDict.up = true;
         }
-        if(Input.GetKey("a")) {
+        if (Input.GetKey("a")) {
             inputDict.left = true;
         }
-        if(Input.GetKey("s")) {
+        if (Input.GetKey("s")) {
             inputDict.down = true;
         }
-        if(Input.GetKey("d")) {
+        if (Input.GetKey("d")) {
             inputDict.right = true;
         }
-        if(Input.GetKey("j")) {
-            inputDict.createWall = true;
+        if (Input.GetKey("j")) {
+            inputDict.dash = true;
         }
-        if(Input.GetKey("k")) {
-            inputDict.createMine = true;
+        if (Input.GetKey("k")) {
+            inputDict.grapplingHook = true;
         }
-        if(Input.GetKey("l")) {
+        if (Input.GetKey("l")) {
             inputDict.shootRocket = true;
         }
+        if (Input.GetKey(KeyCode.Space)) {
+            inputDict.jump = true;
+        }
 
-        playerMovement.move(inputDict);
-        playerAction.onInput(inputDict);
+        GetComponent<PlayerController>().OnInput(inputDict);
     }
 }

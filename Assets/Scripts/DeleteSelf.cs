@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class explode : MonoBehaviour
+public class DeleteSelf : MonoBehaviour
 {
+    [Range(0.0f, 10.0f)]
+    public float timeToDie = 1.0f;
+    private float timer = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +16,9 @@ public class explode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer >= timeToDie) {
+            Object.Destroy(this.gameObject);
+        }
     }
 }

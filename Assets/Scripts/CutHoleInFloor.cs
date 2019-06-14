@@ -7,7 +7,7 @@ using System;
 
 public class CutHoleInFloor : MonoBehaviour
 {
-    private int holeAngle = 45;
+    //private int holeAngle = 45;
     // Start is called before the first frame update
     void Start()
     {

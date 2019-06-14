@@ -8,20 +8,47 @@ aiming?
  2. uncoupled aiming and movement, with mouse
 
 
+most basic wall creation:
+
+  dash that creates a wall
+   maybe get thicker after .2 seconds
+    useful if teammate is walking near edge and you need to quickly place a wall to save them
+  placing grass
+
+
+most basic destruction:
 
 
 
 
 
  todo:
- explosions.
- cooldown on abilities.
+ how to handle physics. im thinking extreme bounciness and low friction on the walls but high friction on the floor might work well
+ explosions. √
+ cooldown on abilities. √
  wall destruction after explosion
  mine destruction on explosion
+ limit diagonal speed. currently its faster than horizontal and vertical
+ rockets dont move you if they explode in you
 
 
  movement:
+ dash 
+    draw wall with dash
+ stun on explosion √
  walljump kinda thing
- jump over walls 
- grappling hook - maybe
+  walljump effect 
+  physics and determining if you can walljump or nah
+ jump over walls √
+ grappling hook √
+  draw line √
+  constant movement towards hit until youve reached it √
+   dont be 100% straight on, if the player is moving then allow a little bit of DI during the hook √
+  enter grapple state until then too √
  dodge roll - maybe
+
+
+ eventually:
+
+ redo lighting
+ animations
