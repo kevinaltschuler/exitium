@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Mine
   - Death
+  - WallDestroy
   layers:
   - Default
   - TransparentFX

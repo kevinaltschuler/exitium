@@ -33,8 +33,6 @@ public class PlayerMovement : MonoBehaviour {
 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        float xToAdd = 0;
-        float zToAdd = 0;
         float curX = rb.velocity.x;
         float curZ = rb.velocity.z;
 

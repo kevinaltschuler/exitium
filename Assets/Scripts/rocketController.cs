@@ -5,7 +5,7 @@ using UnityEngine;
 public class RocketController : MonoBehaviour {
     public GameObject explosion;
     public Vector3 forwardDir;
-    private float radius = 3.0f;
+    private float radius = 2.5f;
     private float power = 1000.0f;
     private float time = 0.0f;
     private float killTimer = 0.0f;
@@ -42,19 +42,20 @@ public class RocketController : MonoBehaviour {
         if (exploded == false) {
             GetComponent<Renderer>().enabled = false;
             Vector3 explosionPos = GetComponent<Transform>().position - (forwardDir * 0.1f);
-            GameObject expl = Instantiate(explosion, explosionPos, Quaternion.identity);
-            expl.GetComponent<Transform>().localScale = new Vector3(radius, radius, radius);
+            GameObject expl = Instantiate(explosion, explosionPos, Quaternion.identity)as GameObject;
+            expl.GetComponent<Transform>().localScale = new Vector3(radius * 1.2f, radius * 1.2f, radius * 1.2f);
             Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
             foreach (Collider hit in colliders) {
-                Rigidbody rb = hit.GetComponent<Rigidbody>();
                 PlayerController player = hit.GetComponent<PlayerController>();
-
-                if (rb != null) {
-                    rb.AddExplosionForce(power, explosionPos, radius, 0.0F);
-                }
-
                 if (player) {
+                    hit.GetComponent<Rigidbody>().AddExplosionForce(power, explosionPos, radius, 0.0F);
                     player.ChangeState(new StunnedState(player));
+                }
+            }
+            Collider[] closeColliders = Physics.OverlapSphere(explosionPos, radius * 0.5f);
+            foreach (Collider hit in closeColliders) {
+                if (hit.gameObject.tag == "Wall") {
+                    Destroy(hit.gameObject);
                 }
             }
             exploded = true;
