@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class InputDict {
     public bool up = false;
@@ -15,7 +16,7 @@ public class InputDict {
     public bool dash = false;
 }
 
-public class PlayerInput : MonoBehaviour {
+public class PlayerInput : NetworkBehaviour {
     private PlayerMovement playerMovement;
     private PlayerAction playerAction;
 
@@ -27,6 +28,10 @@ public class PlayerInput : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
+        if (hasAuthority == false) {
+            return;
+        }
+
         InputDict inputDict = new InputDict();
 
         if (Input.GetKey("w")) {
